@@ -1,0 +1,3 @@
+.col:not(:last-child){
+  border-right: black 1px solid;
+}

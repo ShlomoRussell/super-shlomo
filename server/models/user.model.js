@@ -1,15 +1,16 @@
-class UserModel {
+export default class UserModel {
   /**
-   * @param {string} id
-   * @param {string} email
-   * @param {string} username
-   * @param {string} password
-   * @param {string} firstName
-   * @param {string} lastName
-   * @param {string} city
-   * @param {string} street
-   * @param {Number} teudatZehut
-   * @param {'Admin'|'Customer'} role
+   * @param {object} user
+   * @param {string} user._id
+   * @param {string} user.email
+   * @param {string} user.username
+   * @param {string} user.password
+   * @param {string} user.firstName
+   * @param {string} user.lastName
+   * @param {string} user.city
+   * @param {string} user.street
+   * @param {Number} user.teudatZehut
+   * @param {'Admin'|'Customer'} user.role
    */
 
   constructor({
@@ -36,5 +37,3 @@ class UserModel {
     this.role = role;
   }
 }
-
-export default UserModel;

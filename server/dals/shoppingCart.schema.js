@@ -5,7 +5,7 @@ const { Schema, model } = mongoose;
 
 const cartItemsSchema = new Schema({
   itemId: { type: String, required: true },
-  amount: { type: Number, required: true },
+  quantity: { type: Number, required: true },
   totalPrice: { type: Number, get: getPrice, set: setPrice, required: true },
 });
 

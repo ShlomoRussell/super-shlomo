@@ -30,6 +30,7 @@ const userSchema = new Schema({
   teudatZehut: {
     type: Number,
     required: [true, "Teudat Zehut is a Required field!"],
+    unique: true,
   },
   password: { type: String, required: [true, "Password is a Required Field!"] },
   city: { type: String, required: [isCustomer, "City is a Required Field!"] },
@@ -53,4 +54,8 @@ export async function findUser(query) {
 
 export async function insertUser(newUser) {
   return userModel.insertMany(newUser);
+}
+
+export async function checkIfTeudatZehutExistAlready(teudatZehut) {
+  return userModel.find({teudatZehut:teudatZehut})
 }
