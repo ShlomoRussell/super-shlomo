@@ -7,3 +7,4 @@ const categoriesSchema = new Schema({
 });
 
 const categoriesModel = model("categories", categoriesSchema);
+

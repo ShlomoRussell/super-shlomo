@@ -12,10 +12,14 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { HomeComponent } from './components/home/home.component';
-import { PageNotfoundComponent } from './components/page-notfound/page-notfound.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AboutComponent } from './components/about/about.component';
 import { CurrentSiteInfoComponent } from './components/current-site-info/current-site-info.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ShoppingLayoutComponent } from './components/shopping-layout/shopping-layout.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ShoppingComponent } from './components/shopping/shopping.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +28,14 @@ import { CurrentSiteInfoComponent } from './components/current-site-info/current
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    PageNotfoundComponent,
     LayoutComponent,
     AboutComponent,
     CurrentSiteInfoComponent,
+    PageNotFoundComponent,
+    ShoppingLayoutComponent,
+    ShoppingCartComponent,
+    ShoppingComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       .subscribe((res) => {
         this.router.navigate(['/']);
         this.auth.setLoggedIn()
+        this.auth.setUser(res)
       });
   }
 }

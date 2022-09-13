@@ -20,7 +20,7 @@ export class LoggedInGuard implements CanActivate {
     | UrlTree {
     if (!window.localStorage.getItem(environment.jwtLocalStorageKey)&& this.auth.checkToken()) {
 
-      return this.router.createUrlTree(['/login']);
+      return this.router.createUrlTree(['/']);
     } else return true;
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +8,9 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
   public isCollapsed = false;
-
-  constructor() {}
-  ngOnInit(): void {}
+  public username: string | undefined;
+  constructor(private auth: AuthService) {}
+  ngOnInit(): void {
+    this.auth.getUser.subscribe((res) => (this.username = res.username));
+  }
 }

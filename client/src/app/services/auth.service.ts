@@ -10,9 +10,13 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
-
+  private user = new BehaviorSubject<User>(new User());
+  public getUser = this.user.asObservable();
+  public setUser(newUser: User) {
+    return this.user.next(newUser);
+  }
   private isLoggedIn = new BehaviorSubject(
-    !localStorage.getItem(environment.jwtLocalStorageKey)
+    !!localStorage.getItem(environment.jwtLocalStorageKey)
   );
   public getLoggedIn = this.isLoggedIn.asObservable();
   public setLoggedIn() {
@@ -21,7 +25,9 @@ export class AuthService {
     );
   }
   public checkIfTeudatZehutExists(teudatZehut: Number) {
-    return this.httpClient.post<boolean>('/auth/checkForTeudatZehut',{teudatZehut});
+    return this.httpClient.post<boolean>('/auth/checkForTeudatZehut', {
+      teudatZehut,
+    });
   }
   public login(credentials: LoginCredentials): Observable<User> {
     return this.httpClient.post<User>('/auth/login', credentials);
@@ -30,7 +36,7 @@ export class AuthService {
     return this.httpClient.post<User>('/auth/register', credentials);
   }
 
-  public checkToken(): Observable<User>{
-    return this.httpClient.get('auth/checkToken')
+  public checkToken(): Observable<User> {
+    return this.httpClient.get('auth/checkToken');
   }
 }
