@@ -6,5 +6,9 @@
   "/auth": {
     "target": "http://localhost:4444",
     "secure": false
+  },
+  "/images": {
+    "target": "http://localhost:4444",
+    "secure": false
   }
 }

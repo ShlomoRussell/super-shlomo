@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { getPrice, setPrice } from "./priceHelpers";
+import { getPrice, setPrice } from "./priceHelpers.js";
 
 const { Schema, model } = mongoose;
 
@@ -10,6 +10,18 @@ const itemsSchema = new Schema({
   category: { type: String, required: true },
 });
 
-
-
 const itemsModel = model("items", itemsSchema);
+
+export async function findAllItems() {
+  return itemsModel.find({});
+}
+
+export async function getCategories() {
+  return (await itemsModel.find({}).select({ category: 1, _id: 0 })).map(
+    (c) => c.category
+  );
+}
+
+export async function insertItem(newItem) {
+  return itemsModel.insertMany(newItem);
+}

@@ -10,6 +10,7 @@ export class User {
     public city?: string,
     public street?: string,
     public teudatZehut?: Number,
-    public token?:string
+    public token?: string,
+    public role?:'Admin'|'Customer'
   ) {}
 }

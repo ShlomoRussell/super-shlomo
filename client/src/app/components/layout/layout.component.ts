@@ -9,9 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LayoutComponent implements OnInit {
   public isLoggedIn = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.auth.getLoggedIn.subscribe((res) => (this.isLoggedIn = res));
+    this.authService.getLoggedIn.subscribe((res) => (this.isLoggedIn = res));
   }
 }

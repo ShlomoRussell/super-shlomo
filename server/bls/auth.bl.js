@@ -23,7 +23,7 @@ export async function addUser(newUser) {
 
 export async function getUserById(id) {
   try {
-    const user = await findUser({ id });
+    const user = await findUser({ _id:id });
     return new UserModel(user[0]);
   } catch (error) {
     throw new Error(error.message);

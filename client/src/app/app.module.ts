@@ -20,6 +20,8 @@ import { ShoppingLayoutComponent } from './components/shopping-layout/shopping-l
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { ItemComponent } from './components/item/item.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
     ShoppingCartComponent,
     ShoppingComponent,
     CategoriesComponent,
+    ItemComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,

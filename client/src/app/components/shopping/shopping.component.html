@@ -1,3 +1,13 @@
 <div>
   <app-categories></app-categories>
+  <div *ngIf="items" class="container">
+    <div class="row">
+      <app-item
+        class="col"
+        *ngFor="let currentItem of items"
+        [item]="currentItem"
+      ></app-item>
+    </div>
+  </div>
+  <div *ngIf="items.length === 0" class="tranlate-center">No products found! Please try your search again!</div>
 </div>

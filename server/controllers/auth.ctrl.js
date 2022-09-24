@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { hash as _hash, compare } from "bcrypt";
 import { config } from "dotenv";
-import { getUserByUsernameOrEmail, addUser } from "../bls/auth.bl.js";
+import { getUserByUsernameOrEmail, addUser, getUserById } from "../bls/auth.bl.js";
 import jwt from "jsonwebtoken";
 import { checkIfTeudatZehutExistAlready } from "../dals/users.schema.js";
 import jwtMiddleware from '../middlewares/jwtMiddleware.js'
@@ -12,7 +12,6 @@ const saltRounds = 10;
 authRoute.get("/checkToken", jwtMiddleware, async (req, res) => {
   const id = req.headers.id;
   const token = req.headers.authorization.split(" ")[1];
-  console.log(token)
   try {
     const user = await getUserById(id);
     console.log(user);

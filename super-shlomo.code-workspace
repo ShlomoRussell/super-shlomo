@@ -2,9 +2,12 @@
   "folders": [
     {
       "path": "./server"
-    },{
+    },
+    {
       "path": "./client"
     }
   ],
-  "settings": {}
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "server"
+  }
 }

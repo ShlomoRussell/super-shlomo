@@ -1,4 +1,3 @@
-    <div class="container-fluid">
-<span>Fruit</span>
-      </div>
-
+<div class="container-fluid">
+  <button *ngFor="let category of categories" (click)="onCategoryClick(category)" [title]="category">{{ category }}</button>
+</div>

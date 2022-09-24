@@ -1,8 +1,8 @@
 class ShoppingCartItems {
   /**
-   * @param { object} item
+   * @param {object} item
    * @param {String} item.id
-   * @param { Number}item.quantity
+   * @param {Number} item.quantity
    * @param {Number} item.totalPrice
    */
   constructor({ id, quantity, totalPrice }) {
