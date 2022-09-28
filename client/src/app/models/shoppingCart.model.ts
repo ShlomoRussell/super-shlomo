@@ -7,8 +7,8 @@ export class ShoppingCartItem {
 }
 export class ShoppingCart {
   constructor(
+    public items: ShoppingCartItem[],
     public customerId?: String,
-    public dateCreated?: Date,
-    public items?: ShoppingCartItem[]
+    public dateCreated?: Date
   ) {}
 }

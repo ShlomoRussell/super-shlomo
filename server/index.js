@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import jwtMiddleware from "./middlewares/jwtMiddleware.js";
 import authRoute from "./controllers/auth.ctrl.js";
 import itemsRouter from "./controllers/items.ctrl.js";
+import shoppingCartRouter from "./controllers/shoppingCart.ctrl.js";
 import { connectMongo } from "./dals/index.js";
 
 config();
@@ -17,6 +18,7 @@ app.use("/images", express.static("uploads"));
 app.use("/auth", authRoute);
 app.use("/api/", jwtMiddleware);
 app.use("/api/items", itemsRouter);
+app.use('/api/shoppingCart',shoppingCartRouter)
 
 connectMongo().catch((err) => console.log(err));
 app.listen(PORT, () => console.log(`served via port ${PORT}`));

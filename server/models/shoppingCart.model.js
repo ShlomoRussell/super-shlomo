@@ -1,18 +1,18 @@
-class ShoppingCartItems {
+export class ShoppingCartItems {
   /**
    * @param {object} item
-   * @param {String} item.id
+   * @param {String} item.itemId
    * @param {Number} item.quantity
    * @param {Number} item.totalPrice
    */
-  constructor({ id, quantity, totalPrice }) {
-    this.id = id;
+  constructor({ itemId, quantity, totalPrice }) {
+    this.itemId = itemId;
     this.quantity = quantity;
     this.totalPrice = totalPrice;
   }
 }
 
-export default class ShoppingCartModel {
+export class ShoppingCartModel {
   /**
    * @param {object} cart
    * @param {String} cart.customerId
@@ -22,6 +22,6 @@ export default class ShoppingCartModel {
   constructor({ customerId, dateCreated, items }) {
     this.customerId = customerId;
     this.dateCreated = dateCreated;
-    this.items = items.map((i) => new ShoppingCartItems(i));
+    this.items = items.map((item) => new ShoppingCartItems(item));
   }
 }
