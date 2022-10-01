@@ -9,7 +9,7 @@ export class User {
     public lastName?: string,
     public city?: string,
     public street?: string,
-    public teudatZehut?: Number,
+    public teudatZehut?: number,
     public token?: string,
     public role?:'Admin'|'Customer'
   ) {}

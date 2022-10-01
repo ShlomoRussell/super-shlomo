@@ -2,7 +2,7 @@ import { Router } from "express";
 import fileUpload from "express-fileupload";
 import { v4 as uuidv4 } from "uuid";
 import { join } from "path";
-import { addItem, getAllItems } from "../bls/items.bl.js";
+import { addItem, getAllItems, getItem } from "../bls/items.bl.js";
 import { getCategories } from "../dals/items.schema.js";
 
 const itemsRouter = Router();
@@ -22,7 +22,7 @@ itemsRouter.get("/categories", async (req, res) => {
     const categories = await getCategories();
     return res.send(categories);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.sendStatus(500);
   }
 });
@@ -45,7 +45,16 @@ itemsRouter.post("/addItem", async (req, res) => {
     const newItem = await addItem({ ...req.body, picture: newFileName });
     return res.send(newItem);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    return res.sendStatus(500);
+  }
+});
+
+itemsRouter.get("/:item", async (req, res) => {
+  try {
+    const item = await getItem(req.params.item);
+    return res.send(item);
+  } catch (error) {
     return res.sendStatus(500);
   }
 });

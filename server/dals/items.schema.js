@@ -25,3 +25,7 @@ export async function getCategories() {
 export async function insertItem(newItem) {
   return itemsModel.insertMany(newItem);
 }
+
+export async function findOneItem(itemName) {
+  return itemsModel.find({ productName: itemName });
+}

@@ -1,4 +1,4 @@
-<div>
+<div class="container text-center">
   <app-categories></app-categories>
   <div *ngIf="items" class="container">
     <div class="row">
@@ -9,5 +9,7 @@
       ></app-item>
     </div>
   </div>
-  <div *ngIf="items.length === 0" class="tranlate-center">No products found! Please try your search again!</div>
+  <div *ngIf="items.length === 0" class="tranlate-center">
+    No products found! Please try your search again!
+  </div>
 </div>

@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ShoppingCart, ShoppingCartItem } from '../models/shoppingCart.model';
+import {
+  CartItemMapped,
+  ShoppingCart,
+  ShoppingCartItem,
+} from '../models/shoppingCart.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,33 +17,47 @@ export class ShoppingCartService {
   public setCart(newCart: ShoppingCart) {
     return this.cart.next(newCart);
   }
-  public setCartItems(newItems: ShoppingCartItem[]) {
+  public setCartItems(newItem: ShoppingCartItem) {
     return this.cart.next({
       ...this.cart.value,
-      items: [...this.cart.value.items, ...newItems],
+      items: [...this.cart.value.items, newItem],
     });
+  }
+  private cartItemsMapped = new BehaviorSubject<CartItemMapped[]>([]);
+
+  public getCartItemsMapped = this.cartItemsMapped.asObservable();
+
+  public setCartItemsMapped(cartItems: CartItemMapped[]) {
+    if (cartItems.length === 0) {
+      return this.cartItemsMapped.next(cartItems);
+    }
+    return this.cartItemsMapped.next(cartItems);
   }
 
   public getShoppingCart(): Observable<ShoppingCart> {
     return this.httpClient.get<ShoppingCart>('/api/shoppingCart');
   }
 
-  public createCart(): Observable<ShoppingCart> {
-    return this.httpClient.post<ShoppingCart>('/api/shoppingCart', {});
-  }
-
   public addToCart(item: ShoppingCartItem): Observable<ShoppingCartItem> {
-    return this.httpClient.post<ShoppingCartItem>(
+    return this.httpClient.put<ShoppingCartItem>(
       '/api/shoppingCart/addToCart',
       item
     );
   }
 
-  public deleteOneItemFromCart(itemId: String): Observable<boolean> {
-    return this.httpClient.delete<boolean>('/api/shoppingCart/oneItem');
+  public deleteOneItemFromCart(itemId: string): Observable<boolean> {
+    return this.httpClient.delete<boolean>('/api/shoppingCart/oneItem', {
+      body: {
+        itemId,
+      },
+    });
   }
 
-  public deleteAllOfItemTypeFromCart(itemId: String): Observable<boolean> {
-    return this.httpClient.delete<boolean>('/api/shoppingCart/allOfItemType');
+  public deleteAllOfItemTypeFromCart(itemId: string): Observable<boolean> {
+    return this.httpClient.delete<boolean>('/api/shoppingCart/allOfItemType', {
+      body: {
+        itemId,
+      },
+    });
   }
 }

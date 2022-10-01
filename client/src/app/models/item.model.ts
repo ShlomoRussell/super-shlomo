@@ -1,9 +1,10 @@
 export class Items {
   constructor(
-    public productName?:String,
-    public price?:Number,
-    public picture?:String,
-    public category?:String
+    public id?:string,
+    public productName?:string,
+    public price?:number,
+    public picture?:string,
+    public category?:string
   ){}
 }
 

@@ -15,9 +15,9 @@ export class ShoppingComponent implements OnInit {
   ngOnInit(): void {
     this.itemsService
       .getAllItems()
-      .pipe(tap((res) => (this.itemsService._items = res)))
+      .pipe(tap((res) => this.itemsService._items.next(res) ))
       .subscribe((res) => this.itemsService.setItems(res));
 
-    this.itemsService.getItems.subscribe((res) => (this.items = res,console.log(res)));
+    this.itemsService.getItems.subscribe((res) => (this.items = res));
   }
 }

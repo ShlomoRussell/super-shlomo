@@ -12,26 +12,27 @@ export class ItemsService {
   public setItems(items: Items[]) {
     return this.items.next(items);
   }
-  public _items: Items[] = [];
+  public _items = new BehaviorSubject<Items[]>([]);
+  public get_items=this._items.asObservable()
   constructor(private httpClient: HttpClient) {}
 
-  public filterCategories(category: String) {
-    if (category === 'All') return this.setItems(this._items);
+  public filterCategories(category: string) {
+    if (category === 'All') return this.setItems(this._items.value);
 
     return this.setItems(
-      this._items.filter((item) => item.category === category)
+      this._items.value.filter((item) => item.category === category)
     );
   }
 
   public searchItems(searchWords: string) {
     const regex = new RegExp(searchWords, 'gi');
     return this.setItems(
-      this._items.filter((item) => item.productName?.match(regex))
+      this._items.value.filter((item) => item.productName?.match(regex))
     );
   }
 
-  public getCategories(): Observable<String[]> {
-    return this.httpClient.get<String[]>('/api/items/categories');
+  public getCategories(): Observable<string[]> {
+    return this.httpClient.get<string[]>('/api/items/categories');
   }
 
   public getAllItems(): Observable<Items[]> {
@@ -40,5 +41,8 @@ export class ItemsService {
 
   public addItem(item: FormData): Observable<Items> {
     return this.httpClient.post<Items>('/api/items/addItem', item);
+  }
+  public getItem(itemName: string): Observable<Items> {
+    return this.httpClient.get<Items>(`/api/items/${itemName}`);
   }
 }

@@ -9,13 +9,25 @@ import {
   ShoppingCartModel,
 } from "../models/shoppingCart.model.js";
 
-
 export async function getCart(customerId) {
   try {
     const cart = await findCart(customerId);
+
+    //if there no existing cart create new one
+    if (cart.length === 0) {
+      try {
+        const newCart = await createCart({
+          customerId,
+          dateCreated: new Date(),
+        });
+        return new ShoppingCartModel(newCart[0]);
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    }
     return new ShoppingCartModel(cart[0]);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw new Error(error.message);
   }
 }
@@ -34,9 +46,7 @@ export async function addtoCart(newItem, customerId) {
     const item = await insertToCart(newItem, customerId);
     return new ShoppingCartItems(newItem);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw new Error(error.message);
   }
 }
-
-

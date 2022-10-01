@@ -7,7 +7,7 @@ import { ItemsService } from 'src/app/services/items.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  public categories: String[]=['All'];
+  public categories=['All'];
   constructor(private itemsService: ItemsService) {}
 
   ngOnInit(): void {
@@ -16,7 +16,7 @@ export class CategoriesComponent implements OnInit {
       .subscribe((res) => (this.categories = [...this.categories,...res]));
   }
 
-  public onCategoryClick(category: String): void {
+  public onCategoryClick(category: string): void {
     this.itemsService.filterCategories(category);
   }
 }

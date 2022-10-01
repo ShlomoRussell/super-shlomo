@@ -17,18 +17,7 @@ shoppingCartRouter.get("/", async (req, res) => {
   }
 });
 
-shoppingCartRouter.post("/", async (req, res) => {
-  try {
-    const cart = await createNewCart({
-      customerId: req.headers.id,
-      dateCreated: new Date(),
-    });
-    return res.send(cart);
-  } catch (error) {
-    console.log(error);
-    return res.sendStatus(500);
-  }
-});
+
 
 shoppingCartRouter.put("/addToCart", async (req, res) => {
   try {
@@ -69,10 +58,10 @@ shoppingCartRouter.delete("/allOfItemType", async (req, res) => {
       req.body.itemId,
       req.headers.id
     );
+    console.log(deleted)
     if (deleted.modifiedCount > 0) {
       return res.send(true);
     } else throw new Error();
-    return res.send(true);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);

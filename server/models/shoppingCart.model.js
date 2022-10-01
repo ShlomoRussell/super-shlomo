@@ -1,9 +1,9 @@
 export class ShoppingCartItems {
   /**
    * @param {object} item
-   * @param {String} item.itemId
-   * @param {Number} item.quantity
-   * @param {Number} item.totalPrice
+   * @param {string} item.itemId
+   * @param {number} item.quantity
+   * @param {number} item.totalPrice
    */
   constructor({ itemId, quantity, totalPrice }) {
     this.itemId = itemId;
@@ -15,7 +15,7 @@ export class ShoppingCartItems {
 export class ShoppingCartModel {
   /**
    * @param {object} cart
-   * @param {String} cart.customerId
+   * @param {string} cart.customerId
    * @param {Date} cart.dateCreated
    * @param {ShoppingCartItems[]} cart.items
    */
