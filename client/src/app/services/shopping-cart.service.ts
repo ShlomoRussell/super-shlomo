@@ -17,10 +17,18 @@ export class ShoppingCartService {
   public setCart(newCart: ShoppingCart) {
     return this.cart.next(newCart);
   }
-  public setCartItems(newItem: ShoppingCartItem) {
+  public setCartItems(newItem: ShoppingCartItem|null, cartItems?: ShoppingCartItem[]) {
+    //removing an item from the cartItem array
+    if (cartItems) {
+      return this.cart.next({
+        ...this.cart.value,
+        items: [...cartItems],
+      });
+    }
+    //adding an item to the cartItem array
     return this.cart.next({
       ...this.cart.value,
-      items: [...this.cart.value.items, newItem],
+      items: [...this.cart.value.items, newItem!],
     });
   }
   private cartItemsMapped = new BehaviorSubject<CartItemMapped[]>([]);

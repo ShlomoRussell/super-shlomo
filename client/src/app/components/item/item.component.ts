@@ -35,7 +35,6 @@ export class ItemComponent implements OnInit {
   }
   public addToCart() {
     this.shoppingCartItem.itemId = this.item.id;
-
     this.modalService.dismissAll();
     this.shoppingCartService
       .addToCart(this.shoppingCartItem)

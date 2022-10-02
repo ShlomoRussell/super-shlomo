@@ -5,6 +5,7 @@ import authRoute from "./controllers/auth.ctrl.js";
 import itemsRouter from "./controllers/items.ctrl.js";
 import shoppingCartRouter from "./controllers/shoppingCart.ctrl.js";
 import { connectMongo } from "./dals/index.js";
+import orderRouter from "./controllers/order.ctrl.js";
 
 config();
 const app = express();
@@ -19,6 +20,6 @@ app.use("/auth", authRoute);
 app.use("/api/", jwtMiddleware);
 app.use("/api/items", itemsRouter);
 app.use('/api/shoppingCart',shoppingCartRouter)
-
+app.use('api/order',orderRouter)
 connectMongo().catch((err) => console.log(err));
 app.listen(PORT, () => console.log(`served via port ${PORT}`));
