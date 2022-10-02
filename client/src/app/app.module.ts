@@ -11,7 +11,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AboutComponent } from './components/about/about.component';
 import { CurrentSiteInfoComponent } from './components/current-site-info/current-site-info.component';
@@ -21,6 +20,9 @@ import { ShoppingComponent } from './components/shopping/shopping.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ItemComponent } from './components/item/item.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
+import { OrderComponent } from './components/order/order.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { OrderLayoutComponent } from './components/order-layout/order-layout.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,6 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     LayoutComponent,
     AboutComponent,
     CurrentSiteInfoComponent,
@@ -38,6 +39,9 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     CategoriesComponent,
     ItemComponent,
     AddItemComponent,
+    OrderComponent,
+    CartItemComponent,
+    OrderLayoutComponent,
   ],
   imports: [
     BrowserModule,
