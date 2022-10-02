@@ -1,0 +1,93 @@
+<div class="card-body p-2">
+  <div class="d-flex justify-content-between">
+    <div class="d-flex flex-row align-items-center">
+      <div class="m-1">
+        <img
+          [src]="'images/' + cartItem.picture"
+          class="img-thumbnail rounded-3"
+          style="width: 65px"
+          alt="Shopping item"
+        />
+      </div>
+    </div>
+    <div *ngIf="!isOrder" class="d-flex flex-row align-items-center">
+      <div class="m-3 text-center">
+        <h6>{{ cartItem.productName }}</h6>
+        <div class="d-flex flex-row align-items-between">
+          <button (click)="addOneItem(cartItem)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-caret-up-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"
+              />
+            </svg>
+          </button>
+          <div
+            class="border border-dark text-center mx-auto"
+            style="width: 32px"
+          >
+            {{ cartItem.quantity }}
+          </div>
+          <button (click)="subtractOneItem(cartItem)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="m-3 text-center">
+        <h6 class="mb-2">Price</h6>
+        <p class="mb-0 text-nowrap">&#x20AA;{{ cartItem.totalPrice }}</p>
+      </div>
+      <button
+        (click)="deleteAllOfItemType(cartItem.itemId!)"
+        style="color: #cecece"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-trash"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div *ngIf="isOrder" class="ms-3 text-center">
+      <h5>{{ cartItem.productName }}</h5>
+      <p class="small mb-0">&#x20AA;{{ cartItem.price }}</p>
+    </div>
+
+    <div *ngIf="isOrder" class="d-flex flex-row align-items-center ">
+      <div style="width: 50px">
+        <h5 class="fw-normal mb-0">{{ cartItem.quantity }}</h5>
+      </div>
+      <div *ngIf="isOrder" style="width: 80px">
+        <h5 class="mb-0">&#x20AA;{{ cartItem.totalPrice }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
