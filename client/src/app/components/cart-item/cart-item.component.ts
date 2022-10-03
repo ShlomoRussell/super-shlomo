@@ -67,16 +67,7 @@ export class CartItemComponent implements OnInit {
   }
 
   public subtractOneItem(item: ShoppingCartItem) {
-    //only one of item in cart so remove it completly
-    if (item.quantity === 1) {
-      this.shoppingCartService.setCartItems(
-        null,
-        this.cartItemsArray.filter((_item, i) => _item.itemId !== item.itemId)
-      );
-      return this.deleteAllOfItemType(item.itemId!);
-    }
-    // more than one item so mapping to subtract from quantity and totalPrice
-    this.shoppingCartService
+       this.shoppingCartService
       .deleteOneItemFromCart(item.itemId!)
       .subscribe((res) => {
         if (res) {
