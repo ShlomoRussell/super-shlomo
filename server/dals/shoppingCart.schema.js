@@ -15,27 +15,31 @@ const shoppingCartSchema = new Schema({
   items: [cartItemsSchema],
 });
 
-const shoppingCartModel = model("cart", shoppingCartSchema);
+const ShoppingCartModel = model("cart", shoppingCartSchema);
 export async function deleteCart(customerId) {
-  return shoppingCartModel.deleteOne({ customerId });
+  return ShoppingCartModel.deleteOne({ customerId });
 }
 
 export async function findCart(customerId) {
-  return shoppingCartModel.find({ customerId });
+  return ShoppingCartModel.find({ customerId });
 }
 
 export async function createCart(newCart) {
-  return shoppingCartModel.insertMany(newCart);
+  return ShoppingCartModel.insertMany(newCart);
 }
 const checkIfItemExists = async (customerId, itemId) => {
-  const [{ items }] = await shoppingCartModel
-    .find({ customerId })
-    .select({ items: 1, _id: 0 });
-  return items.find((item) => item.itemId === itemId);
+  const items = await ShoppingCartModel.find({ customerId }).select({
+    items: 1,
+    _id: 0,
+  });
+  if (items.length > 0) {
+    return items[0].items.find((item) => item.itemId === itemId);
+  }
+  return null;
 };
 
 const updateOneItemQuantity = async (customerId, newItem) =>
-  shoppingCartModel.updateOne(
+  ShoppingCartModel.updateOne(
     {
       customerId,
       "items.itemId": newItem.itemId,
@@ -53,7 +57,7 @@ export async function insertToCart(newItem, customerId) {
   if (itemExists) {
     return updateOneItemQuantity(customerId, newItem);
   }
-  return shoppingCartModel.updateOne(
+  return ShoppingCartModel.updateOne(
     { customerId },
     { $push: { items: newItem } }
   );
@@ -73,7 +77,7 @@ export async function deleteOneItem(itemId, customerId) {
 }
 
 export async function deleteAllOfOneItemType(itemId, customerId) {
-  return shoppingCartModel.updateOne(
+  return ShoppingCartModel.updateOne(
     { customerId },
     {
       $pull: {
@@ -82,3 +86,33 @@ export async function deleteAllOfOneItemType(itemId, customerId) {
     }
   );
 }
+
+// export async function findCartItemsMapped(customerId) {
+//   console.log(customerId)
+//   return ShoppingCartModel.aggregate([
+//     { $match: { customerId } },
+//     {
+//       $lookup: {
+//         from: "items", // collection name in db
+//         localField: "items",
+//         foreignField: "_id",
+//         let: { orders_drink: "$itemId" },
+//         pipeline: [
+//           {
+//             $match: {
+//               $expr: { $in: ["$$orders_drink", "$items"] },
+//             },
+//           },
+//         ],
+//         as: "cartItemsMapped",
+//       },
+//     },
+//     {
+//       $replaceRoot: {
+//         newRoot: {
+//           $mergeObjects: [{ $arrayElemAt: ["$cartItemsMapped", 0] }, "$$ROOT"],
+//         },
+//       },
+//     },
+//   ]);
+// }

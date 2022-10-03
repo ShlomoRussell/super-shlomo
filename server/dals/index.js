@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { userModel } from "./users.schema.js";
-
+import { config } from "dotenv";
+config()
 export async function connectMongo() {
-  await mongoose.connect("mongodb://localhost:27017/super-shlomo");
+   mongoose.connect(process.env.DB_URL);
 }
 
 

@@ -17,7 +17,10 @@ export class ShoppingCartService {
   public setCart(newCart: ShoppingCart) {
     return this.cart.next(newCart);
   }
-  public setCartItems(newItem: ShoppingCartItem|null, cartItems?: ShoppingCartItem[]) {
+  public setCartItems(
+    newItem: ShoppingCartItem | null,
+    cartItems?: ShoppingCartItem[]
+  ) {
     //removing an item from the cartItem array
     if (cartItems) {
       return this.cart.next({
@@ -67,5 +70,8 @@ export class ShoppingCartService {
         itemId,
       },
     });
+  }
+  public deleteCart(): Observable<boolean> {
+    return this.httpClient.delete<boolean>('/api/shoppingCart');
   }
 }

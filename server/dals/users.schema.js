@@ -46,16 +46,16 @@ const userSchema = new Schema({
   },
 });
 
-export const userModel = model("users", userSchema);
+export const UserModel = model("users", userSchema);
 
 export async function findUser(query) {
-  return userModel.find(query);
+  return UserModel.find(query);
 }
 
 export async function insertUser(newUser) {
-  return userModel.insertMany(newUser);
+  return UserModel.insertMany(newUser);
 }
 
 export async function checkIfTeudatZehutExistAlready(teudatZehut) {
-  return userModel.find({teudatZehut:teudatZehut})
+  return UserModel.find({teudatZehut:teudatZehut})
 }

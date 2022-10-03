@@ -10,22 +10,22 @@ const itemsSchema = new Schema({
   category: { type: String, required: true },
 });
 
-const itemsModel = model("items", itemsSchema);
+const ItemsModel = model("items", itemsSchema);
 
 export async function findAllItems() {
-  return itemsModel.find({});
+  return ItemsModel.find({});
 }
 
 export async function getCategories() {
-  return (await itemsModel.find({}).select({ category: 1, _id: 0 })).map(
+  return (await ItemsModel.find({}).select({ category: 1, _id: 0 })).map(
     (c) => c.category
   );
 }
 
 export async function insertItem(newItem) {
-  return itemsModel.insertMany(newItem);
+  return ItemsModel.insertMany(newItem);
 }
 
 export async function findOneItem(itemName) {
-  return itemsModel.find({ productName: itemName });
+  return ItemsModel.find({ productName: itemName });
 }

@@ -13,7 +13,7 @@ export class ItemsService {
     return this.items.next(items);
   }
   public _items = new BehaviorSubject<Items[]>([]);
-  public get_items=this._items.asObservable()
+  public get_items = this._items.asObservable();
   constructor(private httpClient: HttpClient) {}
 
   public filterCategories(category: string) {

@@ -24,7 +24,11 @@
   <footer class="position-relative p-3 pb-2" style="background-color: #eee">
     <div class="d-flex justify-content-between sticky-bottom">
       <h5>Total: &#x20AA;{{ total }}</h5>
-      <a class="btn btn-primary" (click)="offcanvas.close()" routerLink="/order"
+      <a
+        class="btn btn-primary"
+        [ngClass]="{ disabled: cartItems.length === 0 }"
+        (click)="offcanvas.close()"
+        routerLink="/order"
         >Proceed To Checkout</a
       >
     </div>

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +23,7 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { OrderComponent } from './components/order/order.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { OrderLayoutComponent } from './components/order-layout/order-layout.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { OrderLayoutComponent } from './components/order-layout/order-layout.com
     OrderComponent,
     CartItemComponent,
     OrderLayoutComponent,
+    OrderSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { OrderLayoutComponent } from './components/order-layout/order-layout.com
     FormsModule,
   ],
   providers: [
+    NgbActiveModal,
     {
       useClass: JwtInterceptor,
       provide: HTTP_INTERCEPTORS,

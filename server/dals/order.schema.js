@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { getPrice, setPrice } from "./priceHelpers";
+import { getPrice, setPrice } from "./priceHelpers.js";
 const { Schema, model } = mongoose;
 
 const orderSchema = new Schema({
@@ -13,6 +13,8 @@ const orderSchema = new Schema({
   lastFourDigitsOfCC: { type: Number, required: true },
 });
 
-const orderModel = model("order", orderSchema);
+const OrderModel = model("order", orderSchema);
 
-
+export async function insertOrder(order) {
+  return OrderModel.insertMany(order);
+}

@@ -20,6 +20,6 @@ app.use("/auth", authRoute);
 app.use("/api/", jwtMiddleware);
 app.use("/api/items", itemsRouter);
 app.use('/api/shoppingCart',shoppingCartRouter)
-app.use('api/order',orderRouter)
+app.use('/api/order',orderRouter)
 connectMongo().catch((err) => console.log(err));
 app.listen(PORT, () => console.log(`served via port ${PORT}`));

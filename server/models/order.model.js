@@ -26,7 +26,7 @@ export default class OrderModel {
     this.city = city;
     this.street = street;
     this.deliveryDate = deliveryDate;
-    this.orderedDate = deliveryDate;
+    this.orderedDate = orderedDate;
     this.lastFourDigitsOfCC = lastFourDigitsOfCC;
   }
 }
