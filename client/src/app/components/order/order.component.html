@@ -1,78 +1,67 @@
 <div class="card bg-primary text-white rounded-3">
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h5 class="mb-0">Card details</h5>
+      <h5 class="mb-0">Billing and Delivery details</h5>
     </div>
 
-    <p class="small mb-2">Card type</p>
-    <a href="#!" type="submit" class="text-white"
-      ><i class="fab fa-cc-mastercard fa-2x me-2"></i
-    ></a>
-    <a href="#!" type="submit" class="text-white"
-      ><i class="fab fa-cc-visa fa-2x me-2"></i
-    ></a>
-    <a href="#!" type="submit" class="text-white"
-      ><i class="fab fa-cc-amex fa-2x me-2"></i
-    ></a>
-    <a href="#!" type="submit" class="text-white"
-      ><i class="fab fa-cc-paypal fa-2x"></i
-    ></a>
-
-    <form id="form" class="mt-4">
+    <form id="orderForm" class="mt-4">
       <div class="form-outline form-white mb-4">
         <input
+          required
+          name="city"
+          [(ngModel)]="order.city"
           type="text"
-          id="typeName"
+          id="city"
           class="form-control form-control-lg"
           siez="17"
-          placeholder="Cardholder's Name"
+          placeholder="City"
         />
-        <label class="form-label" for="typeName">Cardholder's Name</label>
+        <label class="form-label" for="city">City</label>
       </div>
 
       <div class="form-outline form-white mb-4">
         <input
+          required
+          name="street"
+          [(ngModel)]="order.street"
           type="text"
-          id="typeText"
+          id="street"
+          class="form-control form-control-lg"
+          siez="17"
+          placeholder="Street"
+        />
+        <label class="form-label" for="street">Street</label>
+      </div>
+
+      <div class="form-outline form-white mb-4">
+        <input
+          required
+          name="delivey date"
+          [(ngModel)]="order.deliveryDate"
+          type="datetime-local"
+          id="deliveryDate"
+          class="form-control form-control-lg"
+          siez="17"
+        />
+        <label class="form-label" for="deliveryDate"
+          >Please choose date for delivery</label
+        >
+      </div>
+
+      <div class="form-outline form-white mb-4">
+        <input
+          required
+          name="ccdigits"
+          [(ngModel)]="order.lastFourDigitsOfCC"
+          type="text"
+          id="cc"
           class="form-control form-control-lg"
           siez="17"
           placeholder="1234 5678 9012 3457"
           minlength="19"
           maxlength="19"
         />
-        <label class="form-label" for="typeText">Card Number</label>
-      </div>
-
-      <div class="row mb-4">
-        <div class="col-md-6">
-          <div class="form-outline form-white">
-            <input
-              type="text"
-              id="typeExp"
-              class="form-control form-control-lg"
-              placeholder="MM/YYYY"
-              size="7"
-              id="exp"
-              minlength="7"
-              maxlength="7"
-            />
-            <label class="form-label" for="typeExp">Expiration</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-outline form-white">
-            <input
-              type="password"
-              id="typeText"
-              class="form-control form-control-lg"
-              placeholder="&#9679;&#9679;&#9679;"
-              size="1"
-              minlength="3"
-              maxlength="3"
-            />
-            <label class="form-label" for="typeText">Cvv</label>
-          </div>
-        </div>
+        <label class="form-label" for="cc">Card Number</label>
       </div>
     </form>
 
@@ -80,23 +69,21 @@
 
     <div class="d-flex justify-content-between">
       <p class="mb-2">Subtotal</p>
-      <p class="mb-2">&#x20AA;{{subTotal}}</p>
-    </div>
-
-    <div class="d-flex justify-content-between">
-      <p class="mb-2">Shipping</p>
-      <p class="mb-2">$20.00</p>
+      <p class="mb-2">&#x20AA;{{ subTotal }}</p>
     </div>
 
     <div class="d-flex justify-content-between mb-4">
       <p class="mb-2">Total(Incl. taxes)</p>
-      <p class="mb-2">&#x20AA;{{total}}</p>
+      <p class="mb-2">&#x20AA;{{ total }}</p>
     </div>
 
-    <button type="submit" form="form" class="btn btn-info btn-block btn-lg">
-      <div class="d-flex justify-content-between">
-        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-      </div>
+    <button
+     (click)="sendOrder()"
+      type="submit"
+      form="orderForm"
+      class="btn btn-info btn-block btn-lg"
+    >
+      Checkout
     </button>
   </div>
 </div>
