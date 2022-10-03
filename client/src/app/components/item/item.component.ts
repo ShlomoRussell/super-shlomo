@@ -53,7 +53,8 @@ export class ItemComponent implements OnInit {
                   ...this.currentCartItems[index],
                   quantity: quantity! + this.currentCartItems[index].quantity!,
                   totalPrice: (
-                    price! + Number(this.currentCartItems[index].totalPrice!)
+                    Number(price!) +
+                    Number(this.currentCartItems[index].totalPrice!)
                   ).toFixed(2),
                 };
               }

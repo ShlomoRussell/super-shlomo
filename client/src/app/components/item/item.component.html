@@ -1,4 +1,4 @@
-<div class="card" style="width: 10rem">
+<div class="card">
   <img [src]="'/images/' + item.picture" class="card-img-top" alt="..." />
   <div class="card-body">
     <h5 class="card-title">{{ item.productName }}</h5>
@@ -22,11 +22,11 @@
       <div class="d-flex flex-row align-items-between">
         <div class="m-1 text-center">
           <h6>Quantity</h6>
-          <button (click)="addQuantity()">
+          <button class="border-0" (click)="addQuantity()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="13"
+              height="13"
               fill="currentColor"
               class="bi bi-caret-up-fill"
               viewBox="0 0 16 16"
@@ -36,14 +36,21 @@
               />
             </svg>
           </button>
-          <div class="border border-dark text-center mx-auto" style="width: 32px">
+          <div
+            class="border border-dark text-center mx-auto"
+            style="width: 25px; height: 25px"
+          >
             {{ shoppingCartItem.quantity }}
           </div>
-          <button (click)="subtractQuantity()">
+          <button
+            class="border-0"
+            [disabled]="shoppingCartItem.quantity === 1"
+            (click)="subtractQuantity()"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="13"
+              height="13"
               fill="currentColor"
               class="bi bi-caret-down-fill"
               viewBox="0 0 16 16"
@@ -60,7 +67,7 @@
         </div>
         <div class="m-1 text-center">
           <h6>Total</h6>
-          <div class="p-1  text-nowrap">
+          <div class="p-1 text-nowrap">
             &#x20AA;{{ shoppingCartItem.totalPrice }}
           </div>
         </div>
