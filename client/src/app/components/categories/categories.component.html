@@ -1,3 +1,5 @@
-<div class="container-fluid">
-  <button *ngFor="let category of categories" (click)="onCategoryClick(category)" [title]="category">{{ category }}</button>
+<div class="text-end m-2">
+ <small>filter by: </small> <select (change)="onCategoryChange($event)">
+    <option *ngFor="let category of categories" [value]="category"  >{{ category }}</option>
+  </select>
 </div>
